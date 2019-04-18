@@ -4,7 +4,13 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 
+
+//App
 const app = express()
+
+
+//Use routes
+const users = require('./routes/users')
 
 app.get('/', (req, res)=>{
   res.json({index: true})
@@ -27,6 +33,10 @@ mongoose.connect(db,  { useNewUrlParser: true })
 // Use Public Foler
   app.use(express.json());
   app.use(express.static(path.join(__dirname, "public")));
+
+
+//Use Routes
+app.use('/users', users)
 
 
 //Run Server
